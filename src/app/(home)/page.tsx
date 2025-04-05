@@ -2,7 +2,7 @@
 
 import { InputField } from "@/components/Input";
 import { Button } from "@/components/Button";
-import { BookOpen, SendHorizontal, Clipboard } from "lucide-react";
+import { BookOpen, SendHorizontal, Clipboard, Check } from "lucide-react";
 import { useState } from "react";
 import Loading from "@/app/loading";
 
@@ -53,6 +53,7 @@ const Home = () => {
     if (response?.response) {
       navigator.clipboard.writeText(response.response);
       setCopyResponse(true);
+      //Copy and reset copyresonse after 2 seconds
       setTimeout(() => {
         setCopyResponse(false);
       }, 2000);
@@ -61,11 +62,11 @@ const Home = () => {
 
   return (
     <div className="flex flex-col bg-neutral-800 w-full justify-center items-center h-screen">
-      <div className="w-full flex flex-row items-center justify-center">
-        <h1 className="text-pink-600 text-4xl m-8">HELP ENGLISH</h1>
+      <div className="w-full p-2 flex flex-row items-center justify-center">
+        <h1 className="text-pink-600 text-2xl m-4 md:text-4xl">HELP ENGLISH</h1>
         <BookOpen className="text-pink-600 text-4xl" />
       </div>
-      <div className="w-full flex flex-row justify-center items-center">
+      <div className="w-full flex flex-row max-w-2xl p-2 justify-center items-center">
         <InputField
           type="text"
           value={inputValue}
@@ -75,7 +76,7 @@ const Home = () => {
               handleSearch();
             }
           }}
-          className="focus:ring-pink-600 w-[600px] placeholder:text-center text-sm"
+          className=" focus:ring-pink-600 w-full md:w-[600px] placeholder:text-center text-sm"
           placeholder="Como eu posso te ajudar hoje?"
         />
         <Button
@@ -104,8 +105,13 @@ const Home = () => {
                 {para}
               </p>
             ))}
-            <Button onClick={handleCopy} className="m-2">
-              <Clipboard className="text-white cursor-pointer float-right" />
+            <Button onClick={handleCopy} className="m-2 font-bold">
+              Copiar{" "}
+              {copyResponse ? (
+                <Check className="text-white cursor-pointer float-right" />
+              ) : (
+                <Clipboard className="text-white cursor-pointer float-right" />
+              )}
             </Button>
           </div>
         )

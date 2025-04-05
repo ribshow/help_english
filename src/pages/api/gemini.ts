@@ -10,7 +10,7 @@ export default async function handler(
 
   const { prompt } = req.body;
 
-  const validPrompt = `Responda a entrada a seguir de forma técnica, sem formatação Markdown, nem marcadores com asteriscos, ou símbolos. Seja objetivo e evite frases como "sou um modelo de linguagem". entrada: ${prompt}
+  const validPrompt = `Seu nome é o The Helper English. Responda a entrada a seguir de forma técnica mas como se fosse uma pessoa, sem formatação Markdown, nem marcadores com asteriscos, ou símbolos. Quando fizeram alguma pergunta ou pedido relacionado ao Inglês, seja específico e dê uma atenção especial a pergunta. Seja objetivo e evite frases como "sou um modelo de linguagem". entrada: ${prompt}
 `;
 
   try {
